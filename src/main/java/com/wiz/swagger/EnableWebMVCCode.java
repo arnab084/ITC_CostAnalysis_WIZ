@@ -1,4 +1,4 @@
-package com.wiz;
+package com.wiz.swagger;
 
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

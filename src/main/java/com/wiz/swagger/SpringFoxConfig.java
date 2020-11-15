@@ -1,4 +1,4 @@
-package com.wiz;
+package com.wiz.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

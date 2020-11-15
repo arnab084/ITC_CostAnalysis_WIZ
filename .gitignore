@@ -1,6 +1,2 @@
-/target/classes/com/wiz/Application.class
-/target/classes/application.properties
-/target/classes/com/wiz/EnableWebMVCCode.class
-/target/classes/com/wiz/SpringFoxConfig.class
-/target/classes/com/wiz/travel/TravelController.class
-/target/classes/com/wiz/beans/User.class
+/.idea/
+/target/
