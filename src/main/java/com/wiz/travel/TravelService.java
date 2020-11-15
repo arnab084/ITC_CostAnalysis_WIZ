@@ -6,6 +6,8 @@ import com.wiz.travel.entity.TravelHistoryRepository;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -25,11 +27,6 @@ public class TravelService {
 	    return "Saved";
 	}
 
-	public Iterable<TravelHistoryEntity> getAllUsers() {
-		return travelHistoryRepository.findAll();
-	}
-
-
 	public List<KeyValueResponse> getExpensePerEmployee() {
 		return travelHistoryRepository.getExpensePerEmployee().subList(0,10);
 	}
@@ -38,7 +35,21 @@ public class TravelService {
 		return travelHistoryRepository.getExpenseByBranch();
 	}
 
+	public List<KeyValueResponse> getExpenseByBusinessArea() {
+		return travelHistoryRepository.getExpenseByBusinessArea();
+	}
 
+	public List<KeyValueResponse> getExpenseByDesignation() {
+		return travelHistoryRepository.getExpenseByDesignation();
+	}
+
+	public List<KeyValueResponse> getExpenseByCostCenter() {
+		return travelHistoryRepository.getExpenseByCostCenter();
+	}
+
+	public List<KeyValueResponse> getExpenseByEmployeeGrade() {
+		return travelHistoryRepository.getExpenseByEmployeeGrade();
+	}
 
 	public void createTravelEntity(int caseType, TravelHistoryEntity travelHistoryEntity, XSSFCell cell) throws ParseException {
 

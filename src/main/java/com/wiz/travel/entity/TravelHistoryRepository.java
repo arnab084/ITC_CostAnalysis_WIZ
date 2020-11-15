@@ -16,5 +16,18 @@ public interface TravelHistoryRepository extends JpaRepository<TravelHistoryEnti
     @Query("select  branch as key, sum(total) as value from TravelHistoryEntity group by branch order by value desc")
     List<KeyValueResponse> getExpenseByBranch();
 
+    @Query("select  businessArea as key, sum(total) as value from TravelHistoryEntity group by businessArea order by value desc")
+    List<KeyValueResponse> getExpenseByBusinessArea();
+
+    @Query("select  designation as key, sum(total) as value from TravelHistoryEntity group by designation order by value desc")
+    List<KeyValueResponse> getExpenseByDesignation();
+
+    @Query("select  costCenter as key, sum(total) as value from TravelHistoryEntity group by costCenter order by value desc")
+    List<KeyValueResponse> getExpenseByCostCenter();
+
+    @Query("select  grade as key, sum(total) as value from TravelHistoryEntity group by grade order by value desc")
+    List<KeyValueResponse> getExpenseByEmployeeGrade();
+
+
 
 }
