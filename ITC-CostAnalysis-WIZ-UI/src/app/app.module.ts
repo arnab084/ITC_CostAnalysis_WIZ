@@ -11,19 +11,32 @@ import { ExpensePerEmployeeComponent } from './dashboard/expense-per-employee/ex
 import { ApiModule } from '../../typescript-angular-client/';
 import { HttpClientModule } from '@angular/common/http';
 
+import { HighchartsChartModule } from 'highcharts-angular';
+import { ExpenseByBranchComponent } from './dashboard/expense-by-branch/expense-by-branch.component';
+import { ExpenseByCostCenterComponent } from './dashboard/expense-by-cost-center/expense-by-cost-center.component';
+import { ExpenseByDesignationComponent } from './dashboard/expense-by-designation/expense-by-designation.component';
+import { ExpenseByEmployeeGradeComponent } from './dashboard/expense-by-employee-grade/expense-by-employee-grade.component';
+import { ExpenseByBusinessAreaComponent } from './dashboard/expense-by-business-area/expense-by-business-area.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
-    ExpensePerEmployeeComponent
+    ExpensePerEmployeeComponent,
+    ExpenseByBranchComponent,
+    ExpenseByCostCenterComponent,
+    ExpenseByDesignationComponent,
+    ExpenseByEmployeeGradeComponent,
+    ExpenseByBusinessAreaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ApiModule,
-    HttpClientModule
+    HttpClientModule,
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,5 @@
-{{employeeExpenseData|json}}sdfsdf
+<highcharts-chart *ngIf="chartOptions"
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
+  style="height: 280px;width: 340px;display: block;"
+></highcharts-chart>

@@ -40,11 +40,11 @@ public class TravelService {
 	}
 
 	public List<KeyValueResponse> getExpenseByDesignation() {
-		return travelHistoryRepository.getExpenseByDesignation();
+		return travelHistoryRepository.getExpenseByDesignation().subList(0,20);
 	}
 
 	public List<KeyValueResponse> getExpenseByCostCenter() {
-		return travelHistoryRepository.getExpenseByCostCenter();
+		return travelHistoryRepository.getExpenseByCostCenter().subList(0,10);
 	}
 
 	public List<KeyValueResponse> getExpenseByEmployeeGrade() {
