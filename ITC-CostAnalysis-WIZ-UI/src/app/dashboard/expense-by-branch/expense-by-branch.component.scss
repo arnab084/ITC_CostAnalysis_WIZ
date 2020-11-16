@@ -6,10 +6,13 @@
 
 .displayFull{
   height: 500px;
-  width: 1340px;
+  width: 840px;
   display: block;
 }
 
-.displayNone{
-  display: none;
+mat-icon{
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -275px;
 }

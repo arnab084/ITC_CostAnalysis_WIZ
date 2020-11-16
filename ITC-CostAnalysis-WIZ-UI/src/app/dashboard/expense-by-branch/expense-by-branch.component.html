@@ -1,4 +1,4 @@
-<button (click)="viewFullScreen()">FullScreen</button>
+
 <div [class]="displayClass">
 <highcharts-chart *ngIf="chartOptions"
                   [Highcharts]="Highcharts"
@@ -6,3 +6,6 @@
                   style="width: 100%;height: 100%;display: block"
 ></highcharts-chart>
 </div>
+
+<mat-icon *ngIf="displayClass!='displayFull'" aria-hidden="false"
+          (click)="viewFullScreen()" aria-label="Full Screen">fullscreen</mat-icon>

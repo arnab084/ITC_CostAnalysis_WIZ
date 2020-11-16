@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GraphPopupComponent } from './graph-popup.component';
 
@@ -6,7 +6,7 @@ describe('GraphPopupComponent', () => {
   let component: GraphPopupComponent;
   let fixture: ComponentFixture<GraphPopupComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GraphPopupComponent ]
     })

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TravelControllerService} from "typescript-angular-client";
 import * as Highcharts from 'highcharts';
 
+
 @Component({
   selector: 'app-expense-per-employee',
   templateUrl: './expense-per-employee.component.html',

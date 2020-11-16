@@ -19,6 +19,7 @@ import { ExpenseByEmployeeGradeComponent } from './dashboard/expense-by-employee
 import { ExpenseByBusinessAreaComponent } from './dashboard/expense-by-business-area/expense-by-business-area.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 import { GraphPopupComponent } from './dashboard/graph-popup/graph-popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -43,6 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     HighchartsChartModule,
     MatDialogModule,
+    MatIconModule,
     BrowserAnimationsModule
   ],
   providers: [],

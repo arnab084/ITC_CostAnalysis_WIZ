@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   viewFullScreen(graphType){
     this.fullScreenEnabledGraph = graphType;
-    this.openDialog();
+    this.openDialog(graphType);
   }
 
   removeFullScreenView(){
@@ -25,8 +25,10 @@ export class DashboardComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog() {
-    const dialogRef = this.dialog.open(GraphPopupComponent);
+  openDialog(graphType) {
+    const dialogRef = this.dialog.open(GraphPopupComponent,{
+     data:graphType
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
