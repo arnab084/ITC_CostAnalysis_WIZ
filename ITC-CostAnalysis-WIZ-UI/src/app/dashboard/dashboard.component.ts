@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {GraphPopupComponent} from "./graph-popup/graph-popup.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit() {
+  }
+
+  fullScreenEnabledGraph = "";
+
+  viewFullScreen(graphType){
+    this.fullScreenEnabledGraph = graphType;
+    this.openDialog();
+  }
+
+  removeFullScreenView(){
+    this.fullScreenEnabledGraph = "";
+  }
+
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(GraphPopupComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+
+  getDisplayType(type){
+    if(this.fullScreenEnabledGraph === ""){
+      return "displaySmall";
+    } else if(this.fullScreenEnabledGraph === type){
+      return "displayFull";
+    } else {
+      return "displayNone";
+    }
   }
 
 }

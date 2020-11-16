@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TravelControllerService} from "typescript-angular-client";
 import * as Highcharts from 'highcharts';
 
@@ -8,6 +8,16 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./expense-by-branch.component.scss']
 })
 export class ExpenseByBranchComponent implements OnInit {
+
+  @Input()
+  displayClass = "displaySmall";
+
+  @Output()
+  viewFullEvent = new EventEmitter<string>();
+
+  viewFullScreen(){
+    this.viewFullEvent.emit("branch")
+  }
 
   branchExpenseData;
 
@@ -20,7 +30,7 @@ export class ExpenseByBranchComponent implements OnInit {
   ngOnInit() {
     this.travelCtrlService.getExpenseByBranchUsingGET().subscribe(obj => {
       this.branchExpenseData = [{
-        name: 'Brands',
+        name: 'Cost',
         colorByPoint: true,
         data: []
       }];

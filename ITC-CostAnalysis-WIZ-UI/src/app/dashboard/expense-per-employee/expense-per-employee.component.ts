@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TravelControllerService} from "typescript-angular-client";
 import * as Highcharts from 'highcharts';
 
@@ -9,11 +9,22 @@ import * as Highcharts from 'highcharts';
 })
 export class ExpensePerEmployeeComponent implements OnInit {
 
+  @Input()
+  displayClass = "displaySmall";
+  chartUpdated = true;
+
+  @Output()
+  viewFullEvent = new EventEmitter<string>();
+
+  viewFullScreen(){
+    this.viewFullEvent.emit("employee");
+    this.chartUpdated = true;
+  }
+
   employeeExpenseData;
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions;
-
 
   constructor(private travelCtrlService: TravelControllerService) { }
 

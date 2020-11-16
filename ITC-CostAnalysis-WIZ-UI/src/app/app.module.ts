@@ -18,6 +18,10 @@ import { ExpenseByDesignationComponent } from './dashboard/expense-by-designatio
 import { ExpenseByEmployeeGradeComponent } from './dashboard/expense-by-employee-grade/expense-by-employee-grade.component';
 import { ExpenseByBusinessAreaComponent } from './dashboard/expense-by-business-area/expense-by-business-area.component';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import { GraphPopupComponent } from './dashboard/graph-popup/graph-popup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,14 +33,17 @@ import { ExpenseByBusinessAreaComponent } from './dashboard/expense-by-business-
     ExpenseByCostCenterComponent,
     ExpenseByDesignationComponent,
     ExpenseByEmployeeGradeComponent,
-    ExpenseByBusinessAreaComponent
+    ExpenseByBusinessAreaComponent,
+    GraphPopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ApiModule,
     HttpClientModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
