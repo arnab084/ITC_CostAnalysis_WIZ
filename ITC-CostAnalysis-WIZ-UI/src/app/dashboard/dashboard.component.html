@@ -1,0 +1,16 @@
+
+<div style="display: flex;">
+  <div style="border: 1px solid #dfdfdf;display:flex;margin: 10px;width: 50%">
+      <app-expense-per-employee displayClass="displaySmall"
+                          (viewFullEvent)="viewFullScreen($event)"></app-expense-per-employee>
+      <app-expense-by-branch displayClass="displaySmall"
+                       (viewFullEvent)="viewFullScreen($event)"></app-expense-by-branch>
+  </div>
+  <div style="border: 1px solid #dfdfdf;display:flex;margin: 10px;width: 50%">
+    <app-expense-by-business-area></app-expense-by-business-area>
+    <app-expense-by-cost-center></app-expense-by-cost-center>
+  </div>
+</div>
+<div style="border: 1px solid #dfdfdf;display:flex;margin: 10px;">
+  <app-expense-by-designation></app-expense-by-designation>
+</div>
