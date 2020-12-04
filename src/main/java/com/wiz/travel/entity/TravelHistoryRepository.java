@@ -2,7 +2,9 @@ package com.wiz.travel.entity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.sql.Date;
 import java.util.List;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
@@ -12,6 +14,13 @@ public interface TravelHistoryRepository extends JpaRepository<TravelHistoryEnti
 
     @Query("select  employeeName as key, sum(total) as value from TravelHistoryEntity group by employeeName order by value desc")
     List<KeyValueResponse> getExpensePerEmployee();
+
+    @Query("select  travel.employeeName as key, sum(travel.total) as value from TravelHistoryEntity travel " +
+            "where (travel.travelFromDate >= :startDate) " +
+            "and (travel.travelToDate <= :endDate) " +
+            "group by travel.employeeName order by value desc")
+    List<KeyValueResponse> getExpensePerEmployeeByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
 
     @Query("select  branch as key, sum(total) as value from TravelHistoryEntity group by branch order by value desc")
     List<KeyValueResponse> getExpenseByBranch();

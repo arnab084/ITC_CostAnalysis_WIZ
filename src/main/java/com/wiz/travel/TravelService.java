@@ -27,8 +27,17 @@ public class TravelService {
 	    return "Saved";
 	}
 
-	public List<KeyValueResponse> getExpensePerEmployee() {
-		return travelHistoryRepository.getExpensePerEmployee().subList(0,10);
+	public List<KeyValueResponse> getExpensePerEmployee(int employeeCount) {
+		return travelHistoryRepository.getExpensePerEmployee().subList(0,employeeCount);
+	}
+
+	public List<KeyValueResponse> getExpensePerEmployeeByTime(Date startDate, Date endDate) {
+		List<KeyValueResponse> response = travelHistoryRepository.getExpensePerEmployeeByTime(startDate, endDate);
+		if(response!=null && response.size()>10){
+			return response.subList(0,10);
+		} else {
+			return response;
+		}
 	}
 
 	public List<KeyValueResponse> getExpenseByBranch() {

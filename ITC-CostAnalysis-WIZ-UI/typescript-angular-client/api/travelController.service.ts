@@ -237,15 +237,38 @@ export class TravelControllerService {
     }
 
     /**
-     * getExpensePerEmployee
+     * getExpensePerEmployeeByTime
      * 
+     * @param endDate endDate
+     * @param startDate startDate
+     * @param employeeCount employeeCount
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getExpensePerEmployeeUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<KeyValueResponse>>;
-    public getExpensePerEmployeeUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<KeyValueResponse>>>;
-    public getExpensePerEmployeeUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<KeyValueResponse>>>;
-    public getExpensePerEmployeeUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getExpensePerEmployeeByTimeUsingPOST(endDate: string, startDate: string, employeeCount?: number, observe?: 'body', reportProgress?: boolean): Observable<Array<KeyValueResponse>>;
+    public getExpensePerEmployeeByTimeUsingPOST(endDate: string, startDate: string, employeeCount?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<KeyValueResponse>>>;
+    public getExpensePerEmployeeByTimeUsingPOST(endDate: string, startDate: string, employeeCount?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<KeyValueResponse>>>;
+    public getExpensePerEmployeeByTimeUsingPOST(endDate: string, startDate: string, employeeCount?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (endDate === null || endDate === undefined) {
+            throw new Error('Required parameter endDate was null or undefined when calling getExpensePerEmployeeByTimeUsingPOST.');
+        }
+
+        if (startDate === null || startDate === undefined) {
+            throw new Error('Required parameter startDate was null or undefined when calling getExpensePerEmployeeByTimeUsingPOST.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (employeeCount !== undefined && employeeCount !== null) {
+            queryParameters = queryParameters.set('employeeCount', <any>employeeCount);
+        }
+        if (endDate !== undefined && endDate !== null) {
+            queryParameters = queryParameters.set('endDate', <any>endDate);
+        }
+        if (startDate !== undefined && startDate !== null) {
+            queryParameters = queryParameters.set('startDate', <any>startDate);
+        }
 
         let headers = this.defaultHeaders;
 
@@ -260,10 +283,59 @@ export class TravelControllerService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json'
         ];
 
-        return this.httpClient.get<Array<KeyValueResponse>>(`${this.basePath}/getExpensePerEmployee`,
+        return this.httpClient.post<Array<KeyValueResponse>>(`${this.basePath}/getExpensePerEmployeeByTime`,
+            null,
             {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * getExpensePerEmployee
+     * 
+     * @param employeeCount employeeCount
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getExpensePerEmployeeUsingPOST(employeeCount?: number, observe?: 'body', reportProgress?: boolean): Observable<Array<KeyValueResponse>>;
+    public getExpensePerEmployeeUsingPOST(employeeCount?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<KeyValueResponse>>>;
+    public getExpensePerEmployeeUsingPOST(employeeCount?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<KeyValueResponse>>>;
+    public getExpensePerEmployeeUsingPOST(employeeCount?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (employeeCount !== undefined && employeeCount !== null) {
+            queryParameters = queryParameters.set('employeeCount', <any>employeeCount);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.post<Array<KeyValueResponse>>(`${this.basePath}/getExpensePerEmployee`,
+            null,
+            {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

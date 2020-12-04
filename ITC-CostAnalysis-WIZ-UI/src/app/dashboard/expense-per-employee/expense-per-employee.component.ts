@@ -1,6 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
 import {TravelControllerService} from "typescript-angular-client";
 import * as Highcharts from 'highcharts';
+import {Filters} from "../../header-compressed/filters/filters";
+import {MatDialog} from "@angular/material/dialog";
+import {FilterService} from "../../header-compressed/filters/filter.service";
 
 
 @Component({
@@ -8,14 +11,29 @@ import * as Highcharts from 'highcharts';
   templateUrl: './expense-per-employee.component.html',
   styleUrls: ['./expense-per-employee.component.scss']
 })
-export class ExpensePerEmployeeComponent implements OnInit {
+export class ExpensePerEmployeeComponent implements OnInit, OnDestroy {
 
   @Input()
   displayClass = "displaySmall";
+
   chartUpdated = true;
 
   @Output()
   viewFullEvent = new EventEmitter<string>();
+
+  filterSubscriber;
+  filter:Filters = new Filters("","","");
+  ngOnInit() {
+    this.filterSubscriber = this.filterService.data.subscribe(obj => {
+      this.filter = obj;
+      this.updateContent();
+    });
+  }
+  ngOnDestroy(): void{
+    if(this.filterSubscriber){
+      this.filterSubscriber.unsubscribe();
+    }
+  }
 
   viewFullScreen(){
     this.viewFullEvent.emit("employee");
@@ -27,10 +45,18 @@ export class ExpensePerEmployeeComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions;
 
-  constructor(private travelCtrlService: TravelControllerService) { }
+  constructor(private travelCtrlService: TravelControllerService, private filterService: FilterService) { }
 
-  ngOnInit() {
-    this.travelCtrlService.getExpensePerEmployeeUsingGET().subscribe(obj => {
+  updateContent() {
+    let endDate = this.filter.year+"-12-31";
+    let startDate = this.filter.year+"-01-01";
+    if(this.filter.year == ""){
+      startDate = "2017-01-01";
+      endDate = "2020-12-31";
+    }
+    console.log(startDate);
+    console.log(endDate);
+    this.travelCtrlService.getExpensePerEmployeeByTimeUsingPOST(endDate,startDate).subscribe(obj => {
       this.employeeExpenseData = [];
         obj.forEach(item => {
         this.employeeExpenseData.push([item.key.length>10?item.key.substring(0, 10):item.key, item.value]);

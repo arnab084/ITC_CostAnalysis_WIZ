@@ -22,6 +22,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { GraphPopupComponent } from './dashboard/graph-popup/graph-popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderCompressedComponent } from './header-compressed/header-compressed.component';
+import { FiltersComponent } from './header-compressed/filters/filters.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -35,18 +38,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ExpenseByDesignationComponent,
     ExpenseByEmployeeGradeComponent,
     ExpenseByBusinessAreaComponent,
-    GraphPopupComponent
+    GraphPopupComponent,
+    HeaderCompressedComponent,
+    FiltersComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ApiModule,
-    HttpClientModule,
-    HighchartsChartModule,
-    MatDialogModule,
-    MatIconModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ApiModule,
+        HttpClientModule,
+        HighchartsChartModule,
+        MatDialogModule,
+        MatIconModule,
+        BrowserAnimationsModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

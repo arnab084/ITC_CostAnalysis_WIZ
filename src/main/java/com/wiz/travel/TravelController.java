@@ -4,11 +4,10 @@ import com.wiz.beans.User;
 import com.wiz.travel.entity.KeyValueResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -17,10 +16,16 @@ public class TravelController {
 	@Autowired
 	TravelService travelService;
 	
-	@GetMapping(path="/getExpensePerEmployee")
+	@PostMapping(path="/getExpensePerEmployee")
 	public @ResponseBody
-	List<KeyValueResponse> getExpensePerEmployee() {
-		return travelService.getExpensePerEmployee();
+	List<KeyValueResponse> getExpensePerEmployee(@RequestParam(defaultValue = "10") int employeeCount) {
+		return travelService.getExpensePerEmployee(employeeCount);
+	}
+
+	@PostMapping(path="/getExpensePerEmployeeByTime")
+	public @ResponseBody
+	List<KeyValueResponse> getExpensePerEmployeeByTime(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate, @RequestParam(defaultValue = "10") int employeeCount) {
+		return travelService.getExpensePerEmployeeByTime(startDate, endDate);
 	}
 
 	@GetMapping(path="/getExpenseByBranch")
