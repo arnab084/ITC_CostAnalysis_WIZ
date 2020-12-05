@@ -47,13 +47,12 @@ export class ExpensePerEmployeeComponent implements OnInit, OnDestroy {
 
   constructor(private travelCtrlService: TravelControllerService, private filterService: FilterService) { }
 
+
+
+
   updateContent() {
-    let endDate = this.filter.year+"-12-31";
-    let startDate = this.filter.year+"-01-01";
-    if(this.filter.year == ""){
-      startDate = "2017-01-01";
-      endDate = "2020-12-31";
-    }
+    let startDate = this.filterService.getStartDate(this.filter);
+    let endDate = this.filterService.getEndDate(this.filter);
     console.log(startDate);
     console.log(endDate);
     this.travelCtrlService.getExpensePerEmployeeByTimeUsingPOST(endDate,startDate).subscribe(obj => {

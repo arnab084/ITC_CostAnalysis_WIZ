@@ -1,7 +1,7 @@
 .displaySmall{
   height: 280px;
   width: 340px;
-  display: block;
+  display: flex;
 }
 
 .displayFull{
@@ -9,6 +9,8 @@
   width: 840px;
   display: block;
 }
+
+
 
 mat-icon{
   float: right;

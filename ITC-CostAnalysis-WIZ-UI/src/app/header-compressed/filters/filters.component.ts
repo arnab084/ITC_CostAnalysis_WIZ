@@ -15,4 +15,14 @@ export class FiltersComponent  {
   onDataChange(){
     this.filterService.updatedDataSelection(this.filter);
   }
+
+  isMonthVisible(monthCount){
+    return this.filter.quarter.indexOf(monthCount)!=-1 || this.filter.quarter=="";
+  }
+
+
+  onQuarterChange(){
+    this.filter.month = "";
+    this.onDataChange();
+  }
 }

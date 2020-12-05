@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div style="border: 1px solid #dfdfdf;display:flex;margin: 20px auto;padding:10px;width: 50%;height: 400px;flex-direction: column">
+  <div style="align-self: center;margin-top:20px;font-size: 24px"> UPLOAD REPORT FILE </div>
+  <div style="align-self: center;margin:50px"><img src="assets/image/upload_excel.png" style="height: 100px;width: 100px"/> </div>
+  <div class="input-group" style="width: 50%;height: 30px;align-self: center">
+    <div class="custom-file" >
+      <input type="file" class="custom-file-input" (change)="selectFile($event)" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+      <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+    </div>
+    <div class="input-group-append">
+      <button class="btn btn-success" type="button" id="inputGroupFileAddon04" (click)="uploadFile()">Upload</button>
+    </div>
+  </div>
+  <div style="padding-top: 30px">
+    <a href="dashboard" class="btn btn-outline-info btn-sm" role="button" aria-pressed="true"><< To Dashboard</a>
+  </div>
+</div>
+

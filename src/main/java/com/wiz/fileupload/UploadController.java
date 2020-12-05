@@ -1,7 +1,7 @@
 package com.wiz.fileupload;
 
-import com.wiz.travel.entity.TravelHistoryEntity;
 import com.wiz.travel.TravelService;
+import com.wiz.travel.entity.TravelHistoryEntity;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,8 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UploadController {
 
@@ -21,7 +24,7 @@ public class UploadController {
 	TravelService travelService;
 
 	@PostMapping("/import")
-	public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException {
+	public Map<String,String> mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException {
 
 		XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
 		XSSFSheet worksheet = workbook.getSheetAt(0);
@@ -41,7 +44,9 @@ public class UploadController {
 			travelHistoryEntityList.add(travelHistoryEntity);
 		}
 		travelService.addTravelReport(travelHistoryEntityList);
-		return "Data Uploaded Successfully";
+		Map<String, String> objMap = new HashMap<>();
+		objMap.put("success","Data Uploaded Successfully");
+		return objMap;
 	}
 
 }
