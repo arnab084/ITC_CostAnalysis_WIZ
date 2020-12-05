@@ -25,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderCompressedComponent } from './header-compressed/header-compressed.component';
 import { FiltersComponent } from './header-compressed/filters/filters.component';
 import {FormsModule} from "@angular/forms";
+import { UploadFileComponent } from './dashboard/upload-file/upload-file.component';
+import { DashboardNewComponent } from './dashboard-new/dashboard-new.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {FormsModule} from "@angular/forms";
     ExpenseByBusinessAreaComponent,
     GraphPopupComponent,
     HeaderCompressedComponent,
-    FiltersComponent
+    FiltersComponent,
+    UploadFileComponent,
+    DashboardNewComponent
   ],
     imports: [
         BrowserModule,

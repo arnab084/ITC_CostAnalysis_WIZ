@@ -1,10 +1,15 @@
 <div style="height: 40px;display: flex;align-items: center;border-bottom: 4px solid #777777">
-  <div style="margin-left: 10px; width: 100%;display: flex">
+  <div style="padding: 10px 0px 0px 10px; width: 100%;display: flex">
     <div>TRAVEL COST ANALYSIS</div>
-    <div style="margin-left: 20px;">
+    <div style="margin-left: 20px;" >
       <mat-icon aria-hidden="false" aria-label="Filter" [class]="filterEnabled" (click)="toggleFilter()">filter_alt</mat-icon>
     </div>
     <app-filters *ngIf="filterEnabled == 'blueDisplay'"></app-filters>
   </div>
-  <div style="font-size: 16px;text-align: right;margin: 10px 5px 5px 5px; "><img src="/assets/image/Logo-Compressed.png"></div>
+  <div style="text-align: right;width: 200px">
+    <a href="upload" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Upload Excel</a>
+  </div>
+  <div style="font-size: 16px;text-align: right;margin: 10px 5px 5px 5px; ">
+    <img src="/assets/image/Logo-Compressed.png">
+  </div>
 </div>
